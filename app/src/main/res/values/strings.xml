@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LoginApp</string>
+
+    <string name="sttr_name1">"纵向和横向滑动";</string>
+    <string name="sttr_name2">纵向和横向瀑布流</string>
+    <string name="sttr_name3">添加头布局和脚布局</string>
+    <string name="sttr_name4">下拉刷新和上拉加载</string>
+    <string name="sttr_name5">滑动删除</string>
+    <string name="sttr_name6">多布局页面</string>
+    <string name="sttr_name7">点击事件</string>
+    <string name="sttr_name8">添加空布局</string>
+    <string name="sttr_name9">添加分割线</string>
+
+
+</resources>

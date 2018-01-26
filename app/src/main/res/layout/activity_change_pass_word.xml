@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_change_pass_word"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.loginapp.Activity.ChangePassWordActivity">
+    <include layout="@layout/toolbar"></include>
+
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <EditText
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:id="@+id/change_edt_getPhone"
+        android:hint="手机号码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_circle_white"
+        android:id="@+id/change_btn_getCode"
+        android:text="获取验证码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:id="@+id/change_edt_getCode"
+        android:hint="验证码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:id="@+id/change_edt_newPassWord"
+        android:hint="新密码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_circle_white"
+        android:id="@+id/change_btn_changePassWord"
+        android:text="修改密码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

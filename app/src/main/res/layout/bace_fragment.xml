@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <WebView
+        android:id="@+id/circle_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="useJs"
+       android:id="@+id/btn_useJs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="btn_useJs_result"
+        android:id="@+id/btn_useJs_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:hint="enter"
+        android:id="@+id/edt_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="commit"
+        android:id="@+id/btn_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.example.administrator.loginapp.Views.FlowLayout
+        android:background="@color/gray"
+        android:id="@+id/flow_layout"
+      style="@style/text_body">
+
+        <TextView
+            android:textSize="20sp"
+            android:text="is s test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.example.administrator.loginapp.Views.FlowLayout>
+    </ScrollView>
+
+</LinearLayout>

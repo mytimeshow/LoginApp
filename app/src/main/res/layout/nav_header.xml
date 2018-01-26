@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ff33"
+    android:layout_width="match_parent"
+    android:layout_height="180dp">
+
+   <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/girls"
+       android:layout_centerInParent="true"
+       android:id="@+id/head_icon"
+       android:layout_width="70dp"
+       android:layout_height="70dp" />
+    <TextView
+        android:textSize="14sp"
+        android:textColor="#fff"
+        android:text="夜听海雨@qq.com"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/head_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="14sp"
+        android:textColor="#fff"
+        android:text="夜听海雨"
+        android:layout_above="@id/head_mail"
+        android:id="@+id/head_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

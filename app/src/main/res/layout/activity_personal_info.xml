@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_personal_info"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.administrator.loginapp.Activity.PersonalInfoActivity">
+
+
+    <include layout="@layout/toolbar"></include>
+    <LinearLayout
+        android:background="@drawable/bg_circle_white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_margin="20dp"
+            android:src="@drawable/girls"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+    <TextView
+        android:textColor="#ff33"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/tv_qqlongin"
+        android:hint="username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/isBindPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_circle_white"
+        android:textSize="20sp"
+        android:text="绑定手机号码"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+    <EditText
+
+        android:textAlignment="center"
+        android:id="@+id/edt_getPhone"
+        android:hint="手机号码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:background="@drawable/bg_circle_white"
+
+        android:id="@+id/btn_getCode"
+        android:text="获取验证码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:textAlignment="center"
+        android:id="@+id/edt_getCode"
+        android:hint="验证码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:background="@drawable/bg_circle_white"
+
+        android:id="@+id/btn_bindPhone"
+        android:text="绑定"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:textColor="#fff"
+        android:id="@+id/btn_loginOut"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/corners_edit"
+        android:text="退出登录"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
