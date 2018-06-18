@@ -16,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.loginapp.Activity.testJava;
+import com.example.administrator.loginapp.Api.VideoApi;
+import com.example.administrator.loginapp.Bean.Response;
 import com.example.administrator.loginapp.R;
 import com.example.administrator.loginapp.Views.FlowLayout;
+
 
 /**
  * Created by Administrator on 2017/10/25 0025.
@@ -26,10 +29,12 @@ import com.example.administrator.loginapp.Views.FlowLayout;
 public class Fragment01 extends BaceFragment {
     private FlowLayout mFlowLayout;
     private EditText mEdit;
+    private TextView onLoad;
     private Button btn_commit;
     private WebView webView;
     private Button btn_useJs;
     private Button btn_useJs_result;
+
 
     @Override
     protected void initData() {
@@ -46,6 +51,7 @@ public class Fragment01 extends BaceFragment {
     protected void initView() {
         webView= (WebView) rootView.findViewById(R.id.circle_img);
         btn_useJs= (Button) rootView.findViewById(R.id.btn_useJs);
+        onLoad= (TextView) rootView.findViewById(R.id.tv_load);
         mFlowLayout= (FlowLayout) rootView.findViewById(R.id.flow_layout);
         mEdit= (EditText) rootView.findViewById(R.id.edt_text);
         btn_commit= (Button) rootView.findViewById(R.id.btn_commit);
@@ -61,7 +67,14 @@ public class Fragment01 extends BaceFragment {
         btn_useJs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.loadUrl("javascript:sum(6,6)");
+              //  webView.loadUrl("javascript:sum(6,6)");
+                VideoApi.getInfo("白").subscribe(new NetObserver<Response<Response.DataBean>>() {
+
+                    public void onNext(Response<Response.DataBean> t) {
+                        onLoad.setText(t.data.get(0).content);
+                        showToast("success");
+                    }
+                });
             }
         });
         btn_useJs_result.setOnClickListener(new View.OnClickListener() {

@@ -13,7 +13,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.administrator.loginapp.Adapter.MainAdapter;
 import com.example.administrator.loginapp.Adapter.Myadapter;
-import com.example.administrator.loginapp.BaseAdapter.BaseAdapter;
+import com.example.administrator.loginapp.Adapter.BaseAdapter;
 import com.example.administrator.loginapp.R;
 import com.example.administrator.loginapp.util.DividerGridItemDecoration;
 

@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.example.administrator.loginapp.Bean.MyUser;
 import com.example.administrator.loginapp.R;
-import com.example.administrator.loginapp.Utils.ActivityCollector;
-import com.example.administrator.loginapp.Utils.SharedPrefUtil;
+import com.example.administrator.loginapp.util.ActivityCollector;
+import com.example.administrator.loginapp.util.SharedPrefUtil;
 
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;

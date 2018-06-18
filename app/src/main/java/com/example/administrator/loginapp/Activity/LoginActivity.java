@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.administrator.loginapp.Bean.MyUser;
 import com.example.administrator.loginapp.R;
-import com.example.administrator.loginapp.Utils.SharedPrefUtil;
+import com.example.administrator.loginapp.util.SharedPrefUtil;
 import com.example.administrator.loginapp.Views.CheckBox;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;

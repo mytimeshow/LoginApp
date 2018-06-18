@@ -1,6 +1,8 @@
 package com.example.administrator.loginapp.Activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,28 +11,43 @@ import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.administrator.loginapp.Dialog.LoadingDialog;
 import com.example.administrator.loginapp.LoadCallBack.EmptyCallBack;
 import com.example.administrator.loginapp.LoadCallBack.ErrorCallBack;
 import com.example.administrator.loginapp.LoadCallBack.LoadingCallBack;
 import com.example.administrator.loginapp.LoadCallBack.LoginCallBack;
 import com.example.administrator.loginapp.LoadCallBack.PostUtil;
 import com.example.administrator.loginapp.R;
-import com.example.administrator.loginapp.Utils.ActivityCollector;
+import com.example.administrator.loginapp.util.ActivityCollector;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.callback.SuccessCallback;
 import com.kingja.loadsir.core.Convertor;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import cn.bmob.v3.Bmob;
 import cn.jpush.android.api.JPushInterface;
+import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public abstract class BaseActivity extends AppCompatActivity {
     GestureDetector gestureDetector;
     public LoadService loadService;
     public LoadService loadService1;
     public ProgressDialog mproDialog;
+    public static CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private static LoadingDialog mLoadingDialog;
+    private volatile int requestLoadingDialogTimes = 0;
+    private static Toast mToast;
+    private static Context context;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
         initListener();
         ActivityCollector.addActivity(this);
+        context=getApplicationContext();
         gestureDetector=new GestureDetector(BaseActivity.this, new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
@@ -62,36 +80,34 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         });
     }
-
-
     protected abstract void initListener();
-
     protected abstract void init() ;
-
-
     protected abstract int getLayoutRes() ;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
+        mCompositeDisposable.dispose();
     }
-
-
-
+    public static CompositeDisposable getmCompositeDisposable(){
+        return mCompositeDisposable;
+    }
+    public static Activity getActivityTop(){
+        return ActivityCollector.activities.get(ActivityCollector.activities.size()-1);
+    }
+    public static LoadingDialog getLoadingDialog(){
+        return mLoadingDialog;
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         return gestureDetector.onTouchEvent(event);
     }
-
     private void setToolbar() {
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
     }
-
-
-
     protected void LoadingPager(final int index){
 
            LoadSir loadSir = new LoadSir.Builder()
@@ -160,8 +176,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
         mproDialog.show();
     }
-
-
     protected void Login(final int index){
 
         LoadSir loadSir = new LoadSir.Builder()
@@ -214,6 +228,65 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                 }
             },500);
+        }
+    }
+    private void showLoading(){
+       if(mLoadingDialog==null){
+           mLoadingDialog=LoadingDialog.newInstance();
+       }
+       if(requestLoadingDialogTimes==0){
+           mLoadingDialog.show(getSupportFragmentManager(),"loading");
+       }
+        requestLoadingDialogTimes++;
+    }
+    public  void showToast(String msg) {
+        if (mToast == null) {
+            mToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(msg);
+        }
+        mToast.show();
+    }
+    private  void showError(Throwable e){
+        if(e instanceof UnknownHostException || e instanceof SocketTimeoutException){
+                showToast("网络不稳定");
+        }else{
+            showToast("服务器异常");
+        }
+    }
+    private   void dismissLoading(){
+        requestLoadingDialogTimes--;
+        if(requestLoadingDialogTimes <= 0 && mLoadingDialog != null&&mLoadingDialog.getFragmentManager()!=null){
+            mLoadingDialog.dismiss();
+            requestLoadingDialogTimes=0;
+            mLoadingDialog=null;
+        }
+
+    }
+
+    public abstract class NetObserver<T> implements Observer<T>{
+        @Override
+        public void onNext(T t) {
+
+        }
+
+        @Override
+        public void onComplete() {
+                dismissLoading();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            showError(e);
+            dismissLoading();
+
+        }
+
+        @Override
+        public void onSubscribe(Disposable d) {
+           getmCompositeDisposable().add(d);
+            showLoading();
+
         }
     }
 
